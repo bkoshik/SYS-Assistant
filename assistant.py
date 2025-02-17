@@ -22,7 +22,7 @@ match sys_input:
     case 1:
         print(f"\n{date.hour}:{date.minute}\n{date.day}.{date.month}.{date.year}")
     case 2:
-        api_weather = input("\nSYS> Введите свой API погоды\n\n> ")
+        api_weather = input("\nSYS> Введите свой API погоды (openweathermap.org)\n\n> ")
         city = input("\nSYS> Введите название города\n\n> ")
         weather_data = requests.get(f"https://api.openweathermap.org/data/2.5/weather?q={city}&lang=ru&units=metric&APPID={api_weather}")
 
