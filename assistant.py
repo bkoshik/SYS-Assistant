@@ -1,5 +1,3 @@
-api_weather = "50c3c8ed1a9dacd90d9bb12137325bb6"
-
 import requests
 import selenium
 from datetime import *
@@ -24,8 +22,9 @@ match sys_input:
     case 1:
         print(f"\n{date.hour}:{date.minute}\n{date.day}.{date.month}.{date.year}")
     case 2:
+        api_weather = input("\nSYS> Введите свой API погоды\n\n> ")
         city = input("\nSYS> Введите название города\n\n> ")
-        weather_data = requests.get(f"https://api.openweathermap.org/data/2.5/weather?q={city}&lang=ru&units=metric&APPID=50c3c8ed1a9dacd90d9bb12137325bb6")
+        weather_data = requests.get(f"https://api.openweathermap.org/data/2.5/weather?q={city}&lang=ru&units=metric&APPID={api_weather}")
 
         if weather_data.json()['cod'] == '404':
             print("No City Found")
