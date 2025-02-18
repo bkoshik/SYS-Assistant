@@ -1,6 +1,7 @@
 import requests
 import time
 import webbrowser
+import os
 import math # Для 4 варианта
 from datetime import datetime
 date = datetime.now()
@@ -148,6 +149,8 @@ SYS> Аргументы:
 
 """
 )
-
+        case "clear":
+            clear = lambda: os.system('cls')
+            clear()
         case _:
             symbolPrint(sys_err + sys)
