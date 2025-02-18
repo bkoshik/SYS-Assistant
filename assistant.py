@@ -1,7 +1,7 @@
 import requests
 import time
 import webbrowser
-import math # Для 4 eval()
+import math # Для 4 варианта
 from datetime import datetime
 date = datetime.now()
 webbrowser.register('Chrome', None, webbrowser.BackgroundBrowser("C:/Program Files/Google/Chrome/Application/chrome.exe"))
@@ -94,19 +94,35 @@ SYS> Данные о погоде в городе {cityName}:
                     webbrowser.get('Chrome').open_new_tab('https://www.google.com/search?q={}'.format(url))
                     print()
         case "4":
-            startCom = input(symbolPrint("\nSYS> Хотите начать?\n0. Выйти\n1. Начать\n2. Пройти обучение\n\n> "))
+            startCom = input(symbolPrint("\nSYS> Хотите начать? (для завершения вводите END)\n0. Выйти\n1. Начать однострочное\n2. Начать многострочное\n3. Пройти обучение\n\n> "))
 
             match startCom:
                 case "0":
                     break
                 case "1":
                     while True:
-                        eval = str(eval(input("\n>>> ")))
-                        if eval == "0":
-                            break
-                        else:
-                            symbolPrint(eval)
+                        try:
+                            lineOneCode = input("\n>>> ")
+                            if lineOneCode == "END":
+                                break
+                            result = eval(lineOneCode)
+                            symbolPrint(str(result))
+                        except Exception as e:
+                            print(f"Ошибка: {e}")
                 case "2":
+                    code = ""
+                    print()
+                    while True:
+                        lineManyCode = input(">>> ")
+                        if lineManyCode == "END":
+                            break
+                        code += lineManyCode + "\n"
+
+                    try:
+                        exec(code)
+                    except Exception as e:
+                        print(f"Ошибка: {e}")
+                case "3":
                     symbolPrint(
 """
 SYS> Аргументы:
