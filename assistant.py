@@ -1,10 +1,12 @@
 import requests
-import os
 import time
 import webbrowser
+import math # Для 4 eval()
 from datetime import datetime
 date = datetime.now()
 webbrowser.register('Chrome', None, webbrowser.BackgroundBrowser("C:/Program Files/Google/Chrome/Application/chrome.exe"))
+
+print("\033[38;2;0;180;0m")
 
 def symbolPrint(str):
     for i in str:
@@ -17,6 +19,7 @@ sys_ques = """SYS> Введите:
 1. Узнать дату и время
 2. Узнать погоду
 3. Открыть веб-сайт
+4. Ввести python-команды
 
 """
 sys = "SYS> Что вы хотите сделать?\n\n"
@@ -90,6 +93,45 @@ SYS> Данные о погоде в городе {cityName}:
                     url = input(symbolPrint("\nSYS> Что вы хотите найти\n\n> "))
                     webbrowser.get('Chrome').open_new_tab('https://www.google.com/search?q={}'.format(url))
                     print()
+        case "4":
+            startCom = input(symbolPrint("\nSYS> Хотите начать?\n0. Выйти\n1. Начать\n2. Пройти обучение\n\n> "))
+
+            match startCom:
+                case "0":
+                    break
+                case "1":
+                    while True:
+                        eval = str(eval(input("\n>>> ")))
+                        if eval == "0":
+                            break
+                        else:
+                            symbolPrint(eval)
+                case "2":
+                    symbolPrint(
+"""
+SYS> Аргументы:
+    Первый аргумент expression:
+        Когда мы вызываем eval(), содержание expression воспринимается интерпретатором как выражение Python.
+
+        Запрещены:
+            if/elif/else
+            def/class
+            for/while
+            import
+    
+    Второй аргумент globals:
+        Он содержит словарь, обеспечивающий доступ eval() к глобальному пространству имен.
+        С помощью глобальных переменных можно указать eval(), какие глобальные имена использовать при выполнении выражения.
+        Все имена, переданные глобальным переменным в словаре, будут доступны eval() во время выполнения.
+        eval() имеет доступ к встроенным функциям.
+
+        Примеры:
+            eval("x + y", {"x": x})
+            eval("x + y + z", {"x": x, "y": y, "z": 300})
+    
+
+"""
+)
 
         case _:
             symbolPrint(sys_err + sys)
