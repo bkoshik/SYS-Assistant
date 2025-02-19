@@ -73,7 +73,7 @@ SYS> Текущее время:
                     webbrowser.get('Chrome').open_new_tab(url)
                     print()
                 case "2":
-                    url = input(symbolPrint("\nSYS> Что вы хотите найти\n\n> "))
+                    url = input(symbolPrint("\nSYS> Что вы хотите найти?\n\n> "))
                     webbrowser.get('Chrome').open_new_tab('https://www.google.com/search?q={}'.format(url))
                     print()
         case "4" | "py" | "python" | "command":
