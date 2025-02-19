@@ -1,9 +1,10 @@
-import requests, time, webbrowser, os, keyboard, sqlite3, math # Для 4 варианта
+import time, webbrowser, os, sqlite3, math # Для 4 варианта
 from calc import calc
 from minidefs import symbolPrint, get_api_by_id
 from timer import  timer
 from weather import weather
 from datetime import datetime
+from deep_translator import GoogleTranslator
 date = datetime.now()
 webbrowser.register('Chrome', None, webbrowser.BackgroundBrowser("C:/Program Files/Google/Chrome/Application/chrome.exe"))
 
@@ -25,6 +26,8 @@ sys_ques = """SYS> Введите:
 3. Открыть веб-сайт
 4. Ввести python-команды
 5. Секундомер/Таймер
+6. Калькулятор
+7. Переводчик
 
 """
 sys = "SYS> Что вы хотите сделать?\n\n"
@@ -126,6 +129,13 @@ SYS> Аргументы:
             timer()
         case "6" | "calc" | "calculator":
             calc()
+        case "7" | "translator" | "translate":
+            lang_from = input(symbolPrint("\nSYS> С какого языка вы хотите перевести?\n\n> "))
+            lang_to = input(symbolPrint("\nSYS> На какой язык нужно перевести?\n\n> "))
+            text = input(symbolPrint("\nSYS> Введите текст который нужно перевести\n\n> "))
+            translator = GoogleTranslator(source=lang_from, target=lang_to)
+            translated = translator.translate(text)
+            symbolPrint("\nSYS> Перевод: \n" + translated + "\n\n")
         case "clear":
             clear = lambda: os.system('cls')
             clear()

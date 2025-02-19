@@ -6,7 +6,7 @@ cursor = conn.cursor()
 def symbolPrint(str):
     for i in str:
         print(i, end="", flush=True)
-        # time.sleep(0.08)
+        # time.sleep(0.075)
     return ""
 
 def get_api_by_id(user_id):
@@ -16,4 +16,5 @@ def get_api_by_id(user_id):
     if result:
         return result[0]  # Возвращаем имя
     else:
-        return "Пользователь с таким ID не найден."
+        return "\nSYS> Пользователь с таким ID не найден."
+
