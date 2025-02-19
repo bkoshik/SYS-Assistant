@@ -23,7 +23,7 @@ def calc():
             case "-":
                 print("\nSYS> Разность:\n" + str(num1 - num2) + "\n")
             case "*":
-                print("\nSYS> Произведение:\n" + str(num1 * num2) + "\n")
+                print("\nSYS> Произведение:\n" + str(num1 * num2))
             case "/":
                 if num2 == 0:
                     print("\nSYS> Деление на ноль")

@@ -1,10 +1,11 @@
-import time, webbrowser, os, sqlite3, math # Для 4 варианта
+import webbrowser, os, sqlite3, math # Для 4 варианта
 from calc import calc
 from minidefs import symbolPrint, get_api_by_id
 from timer import  timer
 from weather import weather
 from datetime import datetime
 from commands import commands
+from applications import apps
 from deep_translator import GoogleTranslator
 
 date = datetime.now()
@@ -35,6 +36,7 @@ sys_ques = """SYS> Введите:
 5. Секундомер/Таймер
 6. Калькулятор
 7. Переводчик
+8. Открыть программу
 
 """
 sys = "SYS> Что вы хотите сделать?\n\n"
@@ -61,7 +63,8 @@ SYS> Текущее время:
 """
 )
         case "2" | "weather":
-            weather(api)
+            None
+            # weather(api)
         case "3" | "web-site" | "site":
             typeUrl = input(symbolPrint("\nSYS> Что вы хотите найти?\n0. Выйти\n1. Веб-сайт\n2. Найти в поисковике\n\n> "))
             
@@ -89,6 +92,19 @@ SYS> Текущее время:
             translator = GoogleTranslator(source=lang_from, target=lang_to)
             translated = translator.translate(text)
             symbolPrint("\nSYS> Перевод: \n" + translated + "\n\n")
+        case "8" | "programm" | "app":
+            def find_app(name):
+                for keys, value in apps.items():
+                    if name in keys:
+                        return value
+                return "Приложение не найдено"
+            app = input(symbolPrint('\nSYS> Введите название программы или путь к программе в "ковычках"\n\n> '))
+
+            if app.replace("/", r"\\").startswith('"C:\\'):
+                os.startfile(app)
+            else:
+                os.startfile(find_app(app))
+            print()
         case "clear":
             clear = lambda: os.system('cls')
             clear()
