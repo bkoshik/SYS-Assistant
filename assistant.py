@@ -25,7 +25,9 @@ while True:
         symbolPrint(api + "\n\n")
     else:
         break
-print()
+
+clear = lambda: os.system('cls')
+clear()
 
 sys_ques = """SYS> Введите:
 0. Выйти
@@ -106,7 +108,6 @@ SYS> Текущее время:
                 os.startfile(find_app(app))
             print()
         case "clear":
-            clear = lambda: os.system('cls')
             clear()
         case _:
             symbolPrint(sys_err + "\n\n")
