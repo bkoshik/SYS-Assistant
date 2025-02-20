@@ -1,6 +1,6 @@
 import sqlite3
 
-conn = sqlite3.connect("C:/Users/kudai/Рабочий стол/Github/SYS-Assistant/module/apis.db")
+conn = sqlite3.connect("C:/[Путь к SYS-Assistant]/SYS-Assistant/module/apis.db")
 cursor = conn.cursor()
 id, name, apiw, apic = map(str, input().split())
 

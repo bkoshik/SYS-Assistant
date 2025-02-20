@@ -6,6 +6,7 @@ from module.weather import weather
 from module.commands import commands
 from module.applications import apps
 from module.cohere import gpt
+from module.secrets import secret
 from datetime import datetime
 from deep_translator import GoogleTranslator
 
@@ -123,6 +124,8 @@ SYS> Текущее время:
             print()
         case "9" | 'ai':
             gpt(apic)
+        case "10"| "generate":
+            secret()
         case "clear":
             clear()
         case _:
