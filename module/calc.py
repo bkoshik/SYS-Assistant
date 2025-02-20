@@ -17,11 +17,11 @@ def calc(apicur):
                 data = response.json()
 
                 if response.status_code != 200 or "conversion_rates" not in data:
-                    return "Ошибка получения курса валют"
+                    return "\nSYS> Ошибка получения курса валют\n\n"
 
                 rate = data["conversion_rates"].get(to_currency)
                 if rate is None:
-                    return "Валюта не найдена"
+                    return "\nSYS> Валюта не найдена\n\n"
 
                 return f"{amount} {from_currency} = {amount * rate:.2f} {to_currency}"
 
@@ -32,7 +32,7 @@ def calc(apicur):
             symbolPrint(convert_currency(amount, from_currency, to_currency))
         case "2":
             date = datetime.now()
-            hfile = "C:/[Путь до ассистента]/SYS-Assistant/module/calc history.txt"
+            hfile = "C:/Users/kudai/Рабочий стол/SYS-Assistant Для себя/module/calc history.txt"
 
             if not os.path.exists(hfile):
                 open(hfile, "w").close()
