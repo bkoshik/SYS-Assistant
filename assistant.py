@@ -5,6 +5,7 @@ from module.timersek import  timer
 from module.weather import weather
 from module.commands import commands
 from module.applications import apps
+from module.cohere import gpt
 from datetime import datetime
 from deep_translator import GoogleTranslator
 
@@ -16,12 +17,17 @@ print("\033[38;2;0;180;0m", end="")
 while True:
     user_id = input(symbolPrint("SYS> Введите свой ID из базы данных\n\n> "))
 
-    user_id = int(user_id)
-    api = get_api_by_id(user_id)
-    if api == "\nSYS> Пользователь с таким ID не найден.":
-        symbolPrint(api + "\n\n")
-    else:
-        break
+    try:
+        user_id = int(user_id)
+        api, apic = get_api_by_id(user_id)
+        
+        if api is None or apic is None:
+            symbolPrint("\nSYS> Пользователь с таким ID не найден.\n\n")
+        else:
+            break
+        
+    except ValueError:
+        symbolPrint("\nSYS> Введите корректный числовой ID.\n\n")
 
 clear = lambda: os.system('cls')
 clear()
@@ -115,6 +121,8 @@ SYS> Текущее время:
             else:
                 os.startfile(find_app(app))
             print()
+        case "9" | 'ai':
+            gpt(apic)
         case "clear":
             clear()
         case _:

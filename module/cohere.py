@@ -1,8 +1,8 @@
 from minidefs import symbolPrint
 import cohere
 
-def gpt():
-    API_KEY = "Вставте свой API с https://dashboard.cohere.com/api-keys"
+def gpt(apic):
+    API_KEY = apic
     co = cohere.Client(API_KEY)
 
     symbolPrint("\nSYS> Чтобы выйти, введите 'END'\n\nSYS> Введите свой запрос\n")

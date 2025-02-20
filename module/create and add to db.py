@@ -1,18 +1,19 @@
 import sqlite3
 
-conn = sqlite3.connect("weather.db")
+conn = sqlite3.connect("C:/Users/kudai/Рабочий стол/Github/SYS-Assistant/module/apis.db")
 cursor = conn.cursor()
-id, name, api = map(str, input().split())
+id, name, apiw, apic = map(str, input().split())
 
 cursor.execute("""
-CREATE TABLE IF NOT EXISTS weather (
+CREATE TABLE IF NOT EXISTS apis (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     name TEXT NOT NULL,
-    api TEXT NOT NULL
+    api TEXT NOT NULL,
+    apic TEXT NOT NULL
 )
 """)
 
-cursor.execute("INSERT INTO weather (id, name, api) VALUES (?, ?, ?)", (id, name, api))
+cursor.execute("INSERT INTO apis (id, name, api, apic) VALUES (?, ?, ?, ?)", (id, name, apiw, apic))
 
 conn.commit()
 conn.close()
