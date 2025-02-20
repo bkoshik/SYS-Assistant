@@ -29,7 +29,7 @@ def calc(apicur):
             from_currency = input(symbolPrint("\nSYS> Из какой валюты\n\n> ")).upper()
             to_currency = input(symbolPrint("\nSYS> В какую валюту\n\n> ")).upper()
 
-            symbolPrint(convert_currency("\nSYS> " + amount, from_currency, to_currency + "\n\n"))
+            symbolPrint("\nSYS> " + str(convert_currency(amount, from_currency, to_currency)) + "\n\n")
         case "2":
             date = datetime.now()
             hfile = "C:/Users/kudai/Рабочий стол/SYS-Assistant Для себя/module/calc history.txt"
