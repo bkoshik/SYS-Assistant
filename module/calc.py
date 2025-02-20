@@ -5,7 +5,7 @@ import os
 
 def calc():
     date = datetime.now()
-    hfile = "calc history.txt"
+    hfile = "C:/[Путь к SYS-Assistant]/SYS-Assistant/module/calc history.txt"
 
     if not os.path.exists(hfile):
         open(hfile, "w").close()
@@ -75,6 +75,26 @@ def calc():
             case _:
                 symbolPrint("\nSYS> Введите правильную операцию")
                 continue
+        
+        with open(hfile, "a") as file:
+            date_str = f"{date.day:02}.{date.month:02}.{date.year}"
+            new_entry = f"\t{hresult}\n"
+
+            if os.path.exists(hfile):
+                with open(hfile, "r", encoding="utf-8") as file:
+                    lines = file.readlines()
+
+                for i, line in enumerate(lines):
+                    if line.strip() == date_str + ":":
+                        lines.insert(i + 1, new_entry)
+                        break
+                else:
+                    lines.append(f"{date_str}:\n{new_entry}")
+            else:
+                lines = [f"{date_str}:\n{new_entry}"]
+
+            with open(hfile, "w", encoding="utf-8") as file:
+                file.writelines(lines)
         
         if quescon == "1":
             con = input("\nSYS> Продолжить?\n0. Выйти\n1. Да\n2. Нет\n\n> ")
