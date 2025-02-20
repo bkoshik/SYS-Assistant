@@ -25,11 +25,11 @@ def calc(apicur):
 
                 return f"{amount} {from_currency} = {amount * rate:.2f} {to_currency}"
 
-            amount = float(input("\nSYS> Введите сумму\n\n> "))
-            from_currency = input("\nSYS> Из какой валюты\n\n> ").upper()
-            to_currency = input("\nSYS> В какую валюту\n\n> ").upper()
+            amount = float(input(symbolPrint("\nSYS> Введите сумму\n\n> ")))
+            from_currency = input(symbolPrint("\nSYS> Из какой валюты\n\n> ")).upper()
+            to_currency = input(symbolPrint("\nSYS> В какую валюту\n\n> ")).upper()
 
-            symbolPrint(convert_currency(amount, from_currency, to_currency))
+            symbolPrint(convert_currency("\nSYS> " + amount, from_currency, to_currency + "\n\n"))
         case "2":
             date = datetime.now()
             hfile = "C:/Users/kudai/Рабочий стол/SYS-Assistant Для себя/module/calc history.txt"
