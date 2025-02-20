@@ -1,20 +1,17 @@
-import webbrowser, os, sqlite3, math # Для 4 варианта
-from calc import calc
-from minidefs import symbolPrint, get_api_by_id
-from timer import  timer
-from weather import weather
+import webbrowser, os, math # Для 4 варианта
+from module.calc import calc
+from module.minidefs import symbolPrint, get_api_by_id
+from module.timersek import  timer
+from module.weather import weather
+from module.commands import commands
+from module.applications import apps
 from datetime import datetime
-from commands import commands
-from applications import apps
 from deep_translator import GoogleTranslator
 
 date = datetime.now()
 webbrowser.register('Chrome', None, webbrowser.BackgroundBrowser("C:/Program Files/Google/Chrome/Application/chrome.exe"))
 
 print("\033[38;2;0;180;0m", end="")
-
-conn = sqlite3.connect("C:/Users/kudai/Рабочий стол/Github/SYS-Assistant/weather.db")
-cursor = conn.cursor()
 
 while True:
     user_id = input(symbolPrint("SYS> Введите свой ID из базы данных\n\n> "))
@@ -65,8 +62,7 @@ SYS> Текущее время:
 """
 )
         case "2" | "weather":
-            None
-            # weather(api)
+            weather(api)
         case "3" | "web-site" | "site":
             typeUrl = input(symbolPrint("\nSYS> Что вы хотите найти?\n0. Выйти\n1. Веб-сайт\n2. Найти в поисковике\n\n> "))
             
@@ -88,12 +84,24 @@ SYS> Текущее время:
         case "6" | "calc" | "calculator":
             calc()
         case "7" | "translator" | "translate":
-            lang_from = input(symbolPrint("\nSYS> С какого языка вы хотите перевести?\n\n> "))
-            lang_to = input(symbolPrint("\nSYS> На какой язык нужно перевести?\n\n> "))
-            text = input(symbolPrint("\nSYS> Введите текст который нужно перевести\n\n> "))
-            translator = GoogleTranslator(source=lang_from, target=lang_to)
-            translated = translator.translate(text)
-            symbolPrint("\nSYS> Перевод: \n" + translated + "\n\n")
+            try:
+                lang_from = input("\nSYS> С какого языка вы хотите перевести?\n\n> ").strip()
+                lang_to = input("\nSYS> На какой язык нужно перевести?\n\n> ").strip()
+                text = input("\nSYS> Введите текст который нужно перевести\n\n> ").strip()
+
+                if not lang_from or not lang_to or not text:
+                    raise ValueError("Все поля должны быть заполнены!")
+
+                translator = GoogleTranslator(source=lang_from, target=lang_to)
+                translated = translator.translate(text)
+
+                print("\nSYS> Перевод: \n" + translated + "\n\n")
+
+            except ValueError as e:
+                print(f"\nSYS> Ошибка: {e}\n")
+
+            except Exception as e:
+                print(f"\nSYS> Произошла ошибка: {e}\n")
         case "8" | "programm" | "app":
             def find_app(name):
                 for keys, value in apps.items():
