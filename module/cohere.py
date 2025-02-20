@@ -2,8 +2,7 @@ from minidefs import symbolPrint
 import cohere
 
 def gpt(apic):
-    API_KEY = apic
-    co = cohere.Client(API_KEY)
+    co = cohere.Client(apic)
 
     symbolPrint("\nSYS> Чтобы выйти, введите 'END'\n\nSYS> Введите свой запрос\n")
 

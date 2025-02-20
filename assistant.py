@@ -1,4 +1,4 @@
-import webbrowser, os, math # Для 4 варианта
+import webbrowser, os, math
 from module.calc import calc
 from module.minidefs import symbolPrint, get_api_by_id
 from module.timersek import  timer
@@ -20,7 +20,7 @@ while True:
 
     try:
         user_id = int(user_id)
-        api, apic = get_api_by_id(user_id)
+        api, apic, apicur = get_api_by_id(user_id)
         
         if api is None or apic is None:
             symbolPrint("\nSYS> Пользователь с таким ID не найден.\n\n")
@@ -43,6 +43,8 @@ sys_ques = """SYS> Введите:
 6. Калькулятор
 7. Переводчик
 8. Открыть программу
+9. Открыть чат с ИИ
+10. Сгенерировать что-то случайное
 
 """
 sys = "SYS> Что вы хотите сделать?\n\n"
@@ -54,7 +56,7 @@ symbolPrint(sys_ques)
 while True:
     symbolPrint(sys)
 
-    sys_input = input(inputChar)
+    sys_input = input(inputChar).strip()
 
     match sys_input:
         case "0" | "exit":
@@ -89,26 +91,26 @@ SYS> Текущее время:
         case "5" | "timer":
             timer()
         case "6" | "calc" | "calculator":
-            calc()
+            calc(apicur)
         case "7" | "translator" | "translate":
             try:
-                lang_from = input("\nSYS> С какого языка вы хотите перевести?\n\n> ").strip()
-                lang_to = input("\nSYS> На какой язык нужно перевести?\n\n> ").strip()
-                text = input("\nSYS> Введите текст который нужно перевести\n\n> ").strip()
+                lang_from = input(symbolPrint("\nSYS> С какого языка вы хотите перевести?\n\n> ")).strip()
+                lang_to = input(symbolPrint("\nSYS> На какой язык нужно перевести?\n\n> ")).strip()
+                text = input(symbolPrint("\nSYS> Введите текст который нужно перевести\n\n> ")).strip()
 
                 if not lang_from or not lang_to or not text:
-                    raise ValueError("Все поля должны быть заполнены!")
+                    raise ValueError(symbolPrint("Все поля должны быть заполнены!"))
 
                 translator = GoogleTranslator(source=lang_from, target=lang_to)
                 translated = translator.translate(text)
 
-                print("\nSYS> Перевод: \n" + translated + "\n\n")
+                symbolPrint(("\nSYS> Перевод: \n" + translated + "\n\n"))
 
             except ValueError as e:
-                print(f"\nSYS> Ошибка: {e}\n")
+                symbolPrint((f"\nSYS> Ошибка: {e}\n"))
 
             except Exception as e:
-                print(f"\nSYS> Произошла ошибка: {e}\n")
+                symbolPrint((f"\nSYS> Произошла ошибка: {e}\n"))
         case "8" | "programm" | "app":
             def find_app(name):
                 for keys, value in apps.items():

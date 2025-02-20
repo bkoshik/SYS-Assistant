@@ -1,6 +1,6 @@
 import time, sqlite3
 
-conn = sqlite3.connect("C:/Users/kudai/Рабочий стол/Github/SYS-Assistant/module/apis.db")
+conn = sqlite3.connect("C:/[Путь до ассистента]/SYS-Assistant/module/apis.db")
 cursor = conn.cursor()
 
 def symbolPrint(str):
@@ -10,12 +10,12 @@ def symbolPrint(str):
     return ""
 
 def get_api_by_id(user_id):
-    cursor.execute("SELECT api, apic FROM apis WHERE id = ?", (user_id,))
+    cursor.execute("SELECT api, apic, apicur FROM apis WHERE id = ?", (user_id,))
     result = cursor.fetchone()
     
     if result:
-        api, apic = result
-        return api, apic
+        api, apic, apicur = result
+        return api, apic, apicur
     else:
         return "\nSYS> Пользователь с таким ID не найден."
 

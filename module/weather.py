@@ -7,9 +7,9 @@ def weather(api):
     weather_data = requests.get(f"https://api.openweathermap.org/data/2.5/weather?q={city}&lang=ru&units=metric&APPID={api}")
 
     if weather_data.json()['cod'] == '404':
-        symbolPrint("\nSYS> Город не найден\n")
+        symbolPrint("\nSYS> Город не найден\n\n")
     elif weather_data.json()['cod'] == '401':
-        symbolPrint("\nSYS> Неправильный API\n")
+        symbolPrint("\nSYS> Неправильный API\n\n")
     else:
         cityName = weather_data.json()['name']
         weather = weather_data.json()['weather'][0]['description']
