@@ -1,6 +1,6 @@
 import webbrowser, os, math
 from module.calc import calc
-from module.minidefs import symbolPrint, get_api_by_id
+from module.minidefs import symbolPrint, param, get_api_by_id
 from module.timersek import  timer
 from module.weather import weather
 from module.commands import commands
@@ -15,23 +15,7 @@ webbrowser.register('Chrome', None, webbrowser.BackgroundBrowser("C:/Program Fil
 
 print("\033[38;2;0;180;0m", end="")
 
-while True:
-    user_id = input(symbolPrint("SYS> Введите свой ID из базы данных\n\n> "))
-
-    try:
-        user_id = int(user_id)
-        api, apic, apicur = get_api_by_id(user_id)
-        
-        if api is None or apic is None:
-            symbolPrint("\nSYS> Пользователь с таким ID не найден.\n\n")
-        else:
-            break
-        
-    except ValueError:
-        symbolPrint("\nSYS> Введите корректный числовой ID.\n\n")
-
-clear = lambda: os.system('cls')
-clear()
+api, apic, apicur = get_api_by_id()
 
 sys_ques = """SYS> Введите:
 0. Выйти
@@ -129,6 +113,7 @@ SYS> Текущее время:
         case "10"| "generate":
             secret()
         case "clear":
+            clear = lambda: os.system('cls')
             clear()
         case _:
             symbolPrint(sys_err + "\n\n")

@@ -1,7 +1,12 @@
 import time, sqlite3
+from parameters import params
 
-conn = sqlite3.connect("C:/[Путь до ассистента]/SYS-Assistant/module/apis.db")
-cursor = conn.cursor()
+def param(name):
+    for keys, value in params.items():
+        if name in keys:
+            return value
+    symbolPrint("Папка не найдена")
+    return
 
 def symbolPrint(str):
     for i in str:
@@ -9,8 +14,11 @@ def symbolPrint(str):
         time.sleep(0.062)
     return ""
 
-def get_api_by_id(user_id):
-    cursor.execute("SELECT api, apic, apicur FROM apis WHERE id = ?", (user_id,))
+conn = sqlite3.connect(f"{param("path")}/module/apis.db")
+cursor = conn.cursor()
+
+def get_api_by_id():
+    cursor.execute("SELECT api, apic, apicur FROM apis WHERE id = ?", (param("my_id"),))
     result = cursor.fetchone()
     
     if result:
@@ -18,4 +26,3 @@ def get_api_by_id(user_id):
         return api, apic, apicur
     else:
         return "\nSYS> Пользователь с таким ID не найден."
-

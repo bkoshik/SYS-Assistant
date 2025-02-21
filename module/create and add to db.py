@@ -1,6 +1,7 @@
 import sqlite3
+from minidefs import symbolPrint, param
 
-conn = sqlite3.connect("C:/[Путь до ассистента]/SYS-Assistant/module/apis.db")
+conn = sqlite3.connect(f"{param("path")}/module/apis.db")
 cursor = conn.cursor()
 id, name, apiw, apic, apicur = map(str, input().split())
 
