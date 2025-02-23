@@ -14,7 +14,7 @@ def timer():
             while True: 
                 time.sleep(1)
 
-                if keyboard.is_pressed('q'):  # Выход при нажатии 'q'
+                if keyboard.is_pressed('q'):
                     symbolPrint("\n\nSYS> Секундомер остановлен.\n\n")
                     break
                 

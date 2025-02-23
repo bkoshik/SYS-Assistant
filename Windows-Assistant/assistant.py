@@ -1,11 +1,10 @@
-import webbrowser, os, math
+import webbrowser, subprocess, os, math
 from module.calc import calc
 from module.minidefs import symbolPrint, param, get_api_by_id
 from module.timersek import  timer
 from module.weather import weather
 from module.commands import commands
-from module.applications import apps
-from module.cohere import gpt
+from module.yandexGPT import gpt
 from module.secrets import secret
 from datetime import datetime
 from deep_translator import GoogleTranslator
@@ -15,7 +14,7 @@ webbrowser.register('Chrome', None, webbrowser.BackgroundBrowser("C:/Program Fil
 
 print("\033[38;2;0;180;0m", end="")
 
-api, apic, apicur = get_api_by_id()
+api, apiai, apicur = get_api_by_id()
 
 sys_ques = """SYS> Введите:
 0. Выйти
@@ -29,6 +28,7 @@ sys_ques = """SYS> Введите:
 8. Открыть программу
 9. Открыть чат с ИИ
 10. Сгенерировать что-то случайное
+11. Выполнить команду из консоли
 
 """
 sys = "SYS> Что вы хотите сделать?\n\n"
@@ -107,13 +107,27 @@ SYS> Текущее время:
                 os.startfile(app)
             else:
                 os.startfile(find_app(app))
-            print()
         case "9" | 'ai':
-            gpt(apic)
+            gpt(apiai)
         case "10"| "generate":
             secret()
+        case "11"| "console" | "konsole" | "cmd":
+            symbolPrint("\nSYS> Введите команду, чтобы выйти введите END")
+
+            while True:
+                usercmd = input(symbolPrint("\n\n> "))
+
+                if usercmd == "END":
+                    print()
+                    break
+                elif usercmd == "sys-as":
+                    symbolPrint("\nSYS> Запустить эту программу из программы нельзя!")
+                    continue
+
+                cmd = lambda: os.system(usercmd.lower())
+                cmd()
         case "clear":
-            clear = lambda: os.system('cls')
+            clear = lambda: os.system('clear')
             clear()
         case _:
             symbolPrint(sys_err + "\n\n")
