@@ -32,7 +32,7 @@ def calc(apicur):
             symbolPrint("\nSYS> " + str(convert_currency(amount, from_currency, to_currency)) + "\n\n")
         case "2":
             date = datetime.now()
-            hfile = f"{param('path')}/module/calc history.txt"
+            hfile = f"{}/module/apis.db".format(param('path'))
 
             if not os.path.exists(hfile):
                 open(hfile, "w").close()
