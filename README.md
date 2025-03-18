@@ -17,13 +17,15 @@
     echo '
     
     sys-as() {
-        source "$HOME/.sys-assistant/virtual_sys/bin/activate"
-        python3 "$HOME/.sys-assistant/assistant.py"
+        source "$HOME/.sys-assistant/Linux-Assistant/virtual_sys/bin/activate"
+        python3 "$HOME/.sys-assistant/Linux-Assistant/assistant.py"
         deactivate
     }' >> $HOME/.zshrc
     cd $HOME/.sys-assistant/
+    rm -rf Windows-Assistant
+    dc Linux-Assistant
     python3 -m venv virtual_sys
-    source "$HOME/.sys-assistant/virtual_sys/bin/activate"
+    source "virtual_sys/bin/activate"
     pip install -r requirements.txt
     deactivate
     cd $HOME/
@@ -34,13 +36,15 @@
     echo '
     
     sys-as() {
-        source "$HOME/.sys-assistant/virtual_sys/bin/activate"
-        python3 "$HOME/.sys-assistant/assistant.py"
+        source "$HOME/.sys-assistant/Linux-Assistant/virtual_sys/bin/activate"
+        python3 "$HOME/.sys-assistant/Linux-Assistant/assistant.py"
         deactivate
     }' >> $HOME/.bashrc
     cd $HOME/.sys-assistant/
+    rm -rf Windows-Assistant
+    dc Linux-Assistant
     python3 -m venv virtual_sys
-    source "$HOME/.sys-assistant/virtual_sys/bin/activate"
+    source "virtual_sys/bin/activate"
     pip install -r requirements.txt
     deactivate
     cd $HOME/
