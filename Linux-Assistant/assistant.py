@@ -1,10 +1,9 @@
 import webbrowser, subprocess, os, math
 from module.calc import calc
-from module.minidefs import symbolPrint, param, get_api_by_id
+from module.minidefs import symbolPrint, get_api_by_id
 from module.timersek import  timer
 from module.weather import weather
 from module.commands import commands
-from module.yandexGPT import gpt
 from module.secrets import secret
 from datetime import datetime
 from deep_translator import GoogleTranslator
@@ -14,7 +13,7 @@ webbrowser.register('Chrome', None, webbrowser.BackgroundBrowser("chrome"))
 
 print("\033[38;2;0;180;0m", end="")
 
-api, apiai, apicur = get_api_by_id()
+api, apicur = get_api_by_id()
 
 sys_ques = """SYS> Введите:
 0. Выйти
@@ -26,9 +25,8 @@ sys_ques = """SYS> Введите:
 6. Калькулятор
 7. Переводчик
 8. Открыть программу
-9. Открыть чат с ИИ
-10. Сгенерировать что-то случайное
-11. Выполнить команду из консоли
+9. Сгенерировать что-то случайное
+10. Выполнить команду из консоли
 
 """
 sys = "SYS> Что вы хотите сделать?\n\n"
@@ -101,11 +99,9 @@ SYS> Текущее время:
 
             subprocess.run(app)
             print()
-        case "9" | 'ai':
-            gpt(apiai)
-        case "10"| "generate":
+        case "9"| "generate":
             secret()
-        case "11"| "console" | "konsole" | "cmd":
+        case "10"| "console" | "konsole" | "cmd":
             symbolPrint("\nSYS> Введите команду, чтобы выйти введите END")
 
             while True:
@@ -118,7 +114,7 @@ SYS> Текущее время:
                     symbolPrint("\nSYS> Запустить эту программу из программы нельзя!")
                     continue
 
-                cmd = lambda: os.system(usercmd.lower())
+                cmd = lambda: os.system(usercmd)
                 cmd()
         case "clear":
             clear = lambda: os.system('clear')

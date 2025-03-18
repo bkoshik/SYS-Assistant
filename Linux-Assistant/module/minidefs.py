@@ -18,11 +18,11 @@ conn = sqlite3.connect(f"{param("path")}/module/apis.db")
 cursor = conn.cursor()
 
 def get_api_by_id():
-    cursor.execute("SELECT api, apiai, apicur FROM apis WHERE id = ?", (param("my_id"),))
+    cursor.execute("SELECT api, apicur FROM apis WHERE id = ?", (param("my_id"),))
     result = cursor.fetchone()
     
     if result:
-        api, apiai, apicur = result
-        return api, apiai, apicur
+        api, apicur = result
+        return api, apicur
     else:
         return "\nSYS> Пользователь с таким ID не найден."
