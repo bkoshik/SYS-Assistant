@@ -23,7 +23,7 @@
     }' >> $HOME/.zshrc
     cd $HOME/.sys-assistant/
     rm -rf Windows-Assistant
-    dc Linux-Assistant
+    cd Linux-Assistant
     python3 -m venv virtual_sys
     source "virtual_sys/bin/activate"
     pip install -r requirements.txt
@@ -42,7 +42,7 @@
     }' >> $HOME/.bashrc
     cd $HOME/.sys-assistant/
     rm -rf Windows-Assistant
-    dc Linux-Assistant
+    cd Linux-Assistant
     python3 -m venv virtual_sys
     source "virtual_sys/bin/activate"
     pip install -r requirements.txt
