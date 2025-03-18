@@ -17,28 +17,30 @@
     echo '
     
     sys-as() {
-        source "$HOME/.sys-assistant/virtual-sys/bin/activate"
+        source "$HOME/.sys-assistant/virtual_sys/bin/activate"
         python3 "$HOME/.sys-assistant/assistant.py"
         deactivate
     }' >> ~/.zshrc
     cd ~/.sys-assistant/
-    source "$HOME/.sys-assistant/virtual-sys/bin/activate"
+    python3 -m venv virtual_sys
+    source "$HOME/.sys-assistant/virtual_sys/bin/activate"
     pip install -r requirements.txt
     deactivate
     cd $HOME/
 
   2. Bash:
 
-    git clone https://github.com/bkoshik/SYS-Assistant.git $HOME/.sys-assistant
+    git clone https://github.com/bkoshik/SYS-Assistant.git ~/.sys-assistant
     echo '
     
     sys-as() {
-        source "$HOME/.sys-assistant/virtual-sys/bin/activate"
+        source "$HOME/.sys-assistant/virtual_sys/bin/activate"
         python3 "$HOME/.sys-assistant/assistant.py"
         deactivate
     }' >> ~/.bashrc
-    cd $HOME/.sys-assistant/
-    source "$HOME/.sys-assistant/virtual-sys/bin/activate"
+    cd ~/.sys-assistant/
+    python3 -m venv virtual_sys
+    source "$HOME/.sys-assistant/virtual_sys/bin/activate"
     pip install -r requirements.txt
     deactivate
     cd $HOME/
