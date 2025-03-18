@@ -20,8 +20,8 @@
         source "$HOME/.sys-assistant/virtual_sys/bin/activate"
         python3 "$HOME/.sys-assistant/assistant.py"
         deactivate
-    }' >> ~/.zshrc
-    cd ~/.sys-assistant/
+    }' >> $HOME/.zshrc
+    cd $HOME/.sys-assistant/
     python3 -m venv virtual_sys
     source "$HOME/.sys-assistant/virtual_sys/bin/activate"
     pip install -r requirements.txt
@@ -37,8 +37,8 @@
         source "$HOME/.sys-assistant/virtual_sys/bin/activate"
         python3 "$HOME/.sys-assistant/assistant.py"
         deactivate
-    }' >> ~/.bashrc
-    cd ~/.sys-assistant/
+    }' >> $HOME/.bashrc
+    cd $HOME/.sys-assistant/
     python3 -m venv virtual_sys
     source "$HOME/.sys-assistant/virtual_sys/bin/activate"
     pip install -r requirements.txt
