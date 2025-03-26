@@ -1,21 +1,66 @@
 # SYS-Assistant
 
 ## Инструкция
-Рекомендую сделать ярлык файла `assistant.py`
-Сделать его можно при помощи создания ярлыка с расположением: 
-`C:\Users\[Имя пользователя]\AppData\Local\Microsoft\WindowsApps\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\python.exe "Путь к файлу assistant.py"` для тех кто установил python с Microsoft Store
-`python.exe "Путь к файлу assistant.py"` для тех кто установил python не с Microsoft Store
+### Windows:
+  Рекомендую сделать ярлык файла `assistant.py`
+  Сделать его можно при помощи создания ярлыка с расположением: 
+  1. Python Microsoft Store: `C:\Users\[Имя пользователя]\AppData\Local\Microsoft\WindowsApps\PythonSoftwareFoundation.Python.3.13_qbz5n2kfra8p0\python.exe "Путь к файлу assistant.py"`
+  2. Python: `python.exe "Путь к файлу assistant.py"`
+  
+  Чтобы терминал не закрывался зайдите в **Терминал > Параметры > По умолчанию > Расширения > Действия закрытия профиля и выберите 'Никогда не закрывать автоматически'**
 
-Чтобы терминал не закрывался зайдите в **Терминал > Параметры > По умолчанию > Расширения > Действия закрытия профиля и выберите 'Никогда не закрывать автоматически'**
+### Linux (на нём основная разработка):
+  Чтобы установить введите:
+  1. Zsh:
+ 
+    git clone https://github.com/bkoshik/SYS-Assistant.git ~/.sys-assistant
+    echo '
+    
+    sys-as() {
+        source "$HOME/.sys-assistant/Linux-Assistant/virtual_sys/bin/activate"
+        python3 "$HOME/.sys-assistant/Linux-Assistant/assistant.py"
+        deactivate
+    }' >> $HOME/.zshrc
+    cd $HOME/.sys-assistant/
+    rm -rf Windows-Assistant
+    cd Linux-Assistant
+    python3 -m venv virtual_sys
+    source "virtual_sys/bin/activate"
+    pip install -r requirements.txt
+    deactivate
+    cd $HOME/
 
-В `calc.py` и там укажите путь к папке `SYS-Assistant`
+  2. Bash:
+
+    git clone https://github.com/bkoshik/SYS-Assistant.git ~/.sys-assistant
+    echo '
+    
+    sys-as() {
+        source "$HOME/.sys-assistant/Linux-Assistant/virtual_sys/bin/activate"
+        python3 "$HOME/.sys-assistant/Linux-Assistant/assistant.py"
+        deactivate
+    }' >> $HOME/.bashrc
+    cd $HOME/.sys-assistant/
+    rm -rf Windows-Assistant
+    cd Linux-Assistant
+    python3 -m venv virtual_sys
+    source "virtual_sys/bin/activate"
+    pip install -r requirements.txt
+    deactivate
+    cd $HOME/
+
+  3. Fish: Fish будет позже (я его не использую)
 
 ## Добавление данных
-При открытии он спрашивает ID из базы данных, чтобы ее создать нужно запустить файл `create and add to db.py` и ввести Номер ID, Имя, API с сайта [openweathermap](https://home.openweathermap.org/api_keys), API с сайта [cohere](https://dashboard.cohere.com/api-keys)
-В `calc.py` и `minidefs.py` введите путь до **SYS-Assistant**
+### Для Windows/Linux:
+  В module/parameter.py уберите все '#' и замените "Введите ваш API ключ с ___" на ваш API ключ: 
+  1. В 7 строке с сайта [OpenWeatherMap](https://home.openweathermap.org/api_keys)
+  2. В 8 строке с сайта [ExchangeRate-API](https://app.exchangerate-api.com/dashboard)
 
-Чтобы добавить свое приложение в **SYS-Assistant** зайдите в `applications.py` и в словаре введите название по которому будет запускаться приложение а дальше введите путь к файлу.
-**Обязательно: уберите двойные ковычки и используйтие / вместо \ Если несколько слов для запуска одного приложения введите () как в других.**
+### Windows:
+  Чтобы добавить свое приложение в **SYS-Assistant** зайдите в `applications.py` и в словаре введите название по которому будет запускаться приложение а дальше введите путь к файлу.
+  **Обязательно: уберите двойные ковычки и используйтие / вместо \ Если несколько слов для запуска одного приложения введите () как в других.**
 
 На данный момент всё.
+
 **Дальше -- Больше**

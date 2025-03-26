@@ -1,19 +1,18 @@
 import webbrowser, subprocess, os, math
 from module.calc import calc
-from module.minidefs import symbolPrint, get_api_by_id
+from module.minidefs import symbolPrint
 from module.timersek import  timer
 from module.weather import weather
 from module.commands import commands
 from module.secrets import secret
 from datetime import datetime
+from module.parameter import params
 from deep_translator import GoogleTranslator
 
 date = datetime.now()
 webbrowser.register('Chrome', None, webbrowser.BackgroundBrowser("chrome"))
 
 print("\033[38;2;0;180;0m", end="")
-
-api, apicur = get_api_by_id()
 
 sys_ques = """SYS> Введите:
 0. Выйти
@@ -53,7 +52,7 @@ SYS> Текущее время:
 """
 )
         case "2" | "weather":
-            weather(api)
+            weather(params["api_weather"])
         case "3" | "web-site" | "site":
             typeUrl = input(symbolPrint("\nSYS> Что вы хотите найти?\n0. Выйти\n1. Веб-сайт\n2. Найти в поисковике\n\n> "))
             
@@ -73,7 +72,7 @@ SYS> Текущее время:
         case "5" | "timer":
             timer()
         case "6" | "calc" | "calculator":
-            calc(apicur)
+            calc(params["api_cur"])
         case "7" | "translator" | "translate":
             try:
                 lang_from = input(symbolPrint("\nSYS> С какого языка вы хотите перевести?\n\n> ")).strip()
